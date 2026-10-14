@@ -1,0 +1,19 @@
+{
+  "name": "opencode-chatgpt-websearch",
+  "version": "1.0.0",
+  "description": "Native OpenCode V2 web search using your existing ChatGPT subscription",
+  "type": "module",
+  "main": "index.js",
+  "exports": "./index.js",
+  "files": ["index.js", "search.js", "README.md", "LICENSE.md", "SECURITY.md"],
+  "scripts": { "test": "node --test search.test.mjs" },
+  "engines": { "node": ">=22" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidNepozitek/opencode-chatgpt-websearch.git"
+  },
+  "homepage": "https://github.com/DavidNepozitek/opencode-chatgpt-websearch#readme",
+  "bugs": { "url": "https://github.com/DavidNepozitek/opencode-chatgpt-websearch/issues" },
+  "keywords": ["opencode", "opencode-plugin", "chatgpt", "websearch"],
+  "license": "MIT"
+}
