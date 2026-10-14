@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "import"],
+  "categories": { "correctness": "error", "suspicious": "error" },
+  "rules": {
+    "typescript/no-explicit-any": "error",
+    "typescript/consistent-type-imports": "error",
+    "typescript/no-non-null-assertion": "error",
+    "eslint/no-eval": "error",
+    "eslint/no-implied-eval": "error",
+    "eslint/no-new-func": "error",
+    "eslint/no-console": "error"
+  }
+}
