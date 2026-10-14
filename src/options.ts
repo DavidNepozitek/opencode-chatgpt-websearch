@@ -5,7 +5,7 @@ export interface SearchOptions {
 }
 
 export function parseOptions(options: Readonly<Record<string, unknown>>): SearchOptions {
-  const model = options.model === undefined ? "gpt-5.6-luna" : options.model;
+  const model = options.model === undefined ? "gpt-6-luna" : options.model;
   const timeout = options.timeout === undefined ? 120_000 : options.timeout;
   if (typeof model !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(model)) {
     throw new Error("ChatGPT websearch: model must be a valid backend model ID");
