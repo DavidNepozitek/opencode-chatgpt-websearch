@@ -18,7 +18,7 @@ project's `opencode.jsonc`), preserving your other settings:
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.1"],
+  "plugins": ["github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.2"],
   "websearch": { "provider": "chatgpt" },
 }
 ```
@@ -27,7 +27,7 @@ OpenCode installs GitHub packages automatically. Alternatively, install globally
 using the CLI, then choose **ChatGPT** in the normal search provider picker:
 
 ```sh
-opencode plugin add 'github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.1'
+opencode plugin add 'github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.2'
 ```
 
 Connect and select a ChatGPT subscription using **`/connect` → OpenAI** if you
@@ -38,12 +38,12 @@ Search official Zephyr documentation for the next RTOS LTS release and its plann
 ```
 
 The package is distributed through GitHub; it is not currently published to npm.
-The `v1.1.1` tag pins a release; use `#main` only if you want development updates.
+The `v1.1.2` tag pins a release; use `#main` only if you want development updates.
 If a newly installed plugin hasn't appeared, run `opencode service restart`.
 
 ## Configuration
 
-Search defaults to **`gpt-5.6-luna`**, independently of the conversation model.
+Search defaults to **`gpt-6-luna`** (GPT-6 Luna), independently of the conversation model.
 V2's search provider interface receives a query and cancellation signal, not the
 session's selected model. You can choose another backend model your subscription
 supports:
@@ -52,9 +52,9 @@ supports:
 {
   "plugins": [
     {
-      "package": "github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.1",
+      "package": "github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.2",
       "options": {
-        "model": "gpt-5.6-luna",
+        "model": "gpt-6-luna",
         "timeout": 120000,
       },
     },
@@ -63,11 +63,11 @@ supports:
 }
 ```
 
-| Option    | Default        | Description                                                                                            |
-| --------- | -------------- | ------------------------------------------------------------------------------------------------------ |
-| `model`   | `gpt-5.6-luna` | Backend model ID, without a provider prefix.                                                           |
-| `timeout` | `120000`       | HTTP request/stream timeout in milliseconds (1–300000).                                                |
-| `default` | `false`        | Select ChatGPT unless search is explicitly disabled. Prefer `websearch.provider` for normal selection. |
+| Option    | Default      | Description                                                                                            |
+| --------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| `model`   | `gpt-6-luna` | Backend model ID, without a provider prefix.                                                           |
+| `timeout` | `120000`     | HTTP request/stream timeout in milliseconds (1–300000).                                                |
+| `default` | `false`      | Select ChatGPT unless search is explicitly disabled. Prefer `websearch.provider` for normal selection. |
 
 Omit `websearch.provider` to use the native picker instead. The plugin does not
 override your selection or saved consent unless explicitly configured to do so.

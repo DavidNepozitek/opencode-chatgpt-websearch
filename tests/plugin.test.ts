@@ -98,6 +98,23 @@ test("resolves current OAuth credentials per query, including account switching"
   }
 });
 
+test("native search requests use GPT-6 Luna when no model override is configured", async () => {
+  const original = globalThis.fetch;
+  let requested = false;
+  try {
+    globalThis.fetch = async (_, init) => {
+      requested = true;
+      assert.ok(typeof init?.body === "string" && init.body.includes('"model":"gpt-6-luna"'));
+      return streamed(fixture());
+    };
+    const state = await setup();
+    await state.provider.execute({ query: "test" }, { signal: new AbortController().signal });
+    assert.equal(requested, true);
+  } finally {
+    globalThis.fetch = original;
+  }
+});
+
 test("requires ChatGPT OAuth, not an API key or arbitrary OAuth provider", async () => {
   for (const value of [
     undefined,
