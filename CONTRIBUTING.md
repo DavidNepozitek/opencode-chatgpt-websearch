@@ -37,9 +37,9 @@ fixed, reject redirects, bound untrusted input, and do not attach raw errors as
 `cause` when they can contain secrets. Add regression tests for security changes.
 
 Keep dependencies exact and commit `pnpm-lock.yaml`. Installation scripts are
-disabled and fresh dependencies have a one-day release-age floor. The only trust
-downgrade exception is the exact type-only `undici-types@6.21.0` version required
-by `@types/node@22`; never widen it without reviewing the package and integrity.
+disabled and fresh dependencies have a one-day release-age floor. Provenance
+downgrade checks have no exceptions. Node types track the current release, while
+CI retains Node 22, 24, and 26 to verify the supported runtime baseline.
 
 Open pull requests against `main`; CI and CodeQL must pass. Main requires a review;
 repository administrators can bypass review **through a pull request only** for

@@ -19,8 +19,8 @@ checked before results are returned.
 The package has no runtime dependencies and no install/build lifecycle scripts.
 Development dependencies and pnpm are pinned; the lockfile includes registry
 integrities. pnpm disables lifecycle scripts, rejects exotic transitive sources,
-enforces a one-day release-age floor, and checks provenance downgrades (with one
-documented, exact type-only exception).
+enforces a one-day release-age floor, and checks provenance downgrades without
+exceptions.
 
 CI uses SHA-pinned actions, read-only tokens by default, no persisted checkout
 credentials, frozen installs, oxlint, strict TypeScript, offline tests, and a
