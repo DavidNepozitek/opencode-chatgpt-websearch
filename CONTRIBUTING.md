@@ -25,8 +25,12 @@ Tests use synthetic credentials and never require a real ChatGPT login.
 
 The installed package exports TypeScript directly, which OpenCode loads natively.
 SDK imports are **type-only**; there are no production dependencies or installation
-lifecycle scripts. `pnpm build` emits an optional `dist/` directory for development,
+lifecycle scripts. `pnpm compile` emits an optional `dist/` directory for development,
 but package installation does not need to build anything.
+
+Do not add a root `build`, `prepare`, or installation lifecycle script: npm's Git
+fetcher uses these names as triggers for dependency preparation, which breaks
+direct GitHub installation in OpenCode. The regression tests enforce this.
 
 Treat every parsed backend value as `unknown` until validated. Keep the endpoint
 fixed, reject redirects, bound untrusted input, and do not attach raw errors as

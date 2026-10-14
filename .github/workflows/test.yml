@@ -33,6 +33,10 @@ jobs:
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm check
       - run: pnpm pack --out /tmp/package.tgz
+      - name: Verify direct Git installation without preparation scripts
+        env:
+          PLUGIN_TARGET: git+${{ github.server_url }}/${{ github.repository }}.git#${{ github.sha }}
+        run: npm install --ignore-scripts --omit=dev --no-audit --no-fund --prefix "$RUNNER_TEMP/git-install" "$PLUGIN_TARGET"
 
   audit:
     runs-on: ubuntu-latest
