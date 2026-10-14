@@ -1,0 +1,13 @@
+# Installation must never execute dependency or project lifecycle scripts.
+ignoreScripts: true
+allowBuilds: {}
+autoInstallPeers: false
+saveExact: true
+engineStrict: true
+minimumReleaseAge: 1440
+blockExoticSubdeps: true
+trustPolicy: no-downgrade
+# @types/node 22 pins this older, type-only package without provenance.
+# Keep the exception version-specific; its integrity is pinned in the lockfile.
+trustPolicyExclude:
+  - undici-types@6.21.0

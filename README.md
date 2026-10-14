@@ -1,13 +1,14 @@
 # ChatGPT web search for OpenCode V2
 
-[![Tests](https://github.com/DavidNepozitek/opencode-chatgpt-websearch/actions/workflows/test.yml/badge.svg)](https://github.com/DavidNepozitek/opencode-chatgpt-websearch/actions/workflows/test.yml)
+[![Checks](https://github.com/DavidNepozitek/opencode-chatgpt-websearch/actions/workflows/test.yml/badge.svg)](https://github.com/DavidNepozitek/opencode-chatgpt-websearch/actions/workflows/test.yml)
 
 Search the web in OpenCode using your existing **ChatGPT subscription**—no
 additional API key or search service. Registers ChatGPT in V2's native search
 provider picker and uses the built-in `websearch` tool, not a replacement tool
 or an MCP server.
 
-Dependency-free. Tested against **OpenCode 2.0.28**. **V1 is not supported.**
+No runtime dependencies. Written in strict TypeScript and tested against
+**OpenCode 2.0.28**. **V1 is not supported.**
 
 ## Install
 
@@ -17,8 +18,8 @@ project's `opencode.jsonc`), preserving your other settings:
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["github:DavidNepozitek/opencode-chatgpt-websearch#v1.0.0"],
-  "websearch": { "provider": "chatgpt" }
+  "plugins": ["github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.0"],
+  "websearch": { "provider": "chatgpt" },
 }
 ```
 
@@ -26,7 +27,7 @@ OpenCode installs GitHub packages automatically. Alternatively, install globally
 using the CLI, then choose **ChatGPT** in the normal search provider picker:
 
 ```sh
-opencode plugin add 'github:DavidNepozitek/opencode-chatgpt-websearch#v1.0.0'
+opencode plugin add 'github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.0'
 ```
 
 Connect and select a ChatGPT subscription using **`/connect` → OpenAI** if you
@@ -37,7 +38,7 @@ Search official Zephyr documentation for the next RTOS LTS release and its plann
 ```
 
 The package is distributed through GitHub; it is not currently published to npm.
-The `v1.0.0` tag pins a release; use `#main` only if you want development updates.
+The `v1.1.0` tag pins a release; use `#main` only if you want development updates.
 If a newly installed plugin hasn't appeared, run `opencode service restart`.
 
 ## Configuration
@@ -49,22 +50,24 @@ supports:
 
 ```jsonc
 {
-  "plugins": [{
-    "package": "github:DavidNepozitek/opencode-chatgpt-websearch#v1.0.0",
-    "options": {
-      "model": "gpt-5.6-luna",
-      "timeout": 120000
-    }
-  }],
-  "websearch": { "provider": "chatgpt" }
+  "plugins": [
+    {
+      "package": "github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.0",
+      "options": {
+        "model": "gpt-5.6-luna",
+        "timeout": 120000,
+      },
+    },
+  ],
+  "websearch": { "provider": "chatgpt" },
 }
 ```
 
-| Option | Default | Description |
-| --- | --- | --- |
-| `model` | `gpt-5.6-luna` | Backend model ID, without a provider prefix. |
-| `timeout` | `120000` | HTTP request/stream timeout in milliseconds (1–300000). |
-| `default` | `false` | Select ChatGPT unless search is explicitly disabled. Prefer `websearch.provider` for normal selection. |
+| Option    | Default        | Description                                                                                            |
+| --------- | -------------- | ------------------------------------------------------------------------------------------------------ |
+| `model`   | `gpt-5.6-luna` | Backend model ID, without a provider prefix.                                                           |
+| `timeout` | `120000`       | HTTP request/stream timeout in milliseconds (1–300000).                                                |
+| `default` | `false`        | Select ChatGPT unless search is explicitly disabled. Prefer `websearch.provider` for normal selection. |
 
 Omit `websearch.provider` to use the native picker instead. The plugin does not
 override your selection or saved consent unless explicitly configured to do so.
@@ -114,14 +117,20 @@ See [SECURITY.md](SECURITY.md).
 ```sh
 git clone https://github.com/DavidNepozitek/opencode-chatgpt-websearch.git
 cd opencode-chatgpt-websearch
-npm test
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm check
 ```
 
-Tests require Node.js 22+ and run offline with synthetic credentials. There are no
-dependencies, no build step, and no `npm install` requirement for development.
+Development requires Node.js 22.18+ and pnpm 11.27.0. Tests run offline with
+synthetic credentials. SDK types, TypeScript, oxlint, and oxfmt are development-only
+dependencies; installation by OpenCode requires no build or lifecycle scripts.
 To test in OpenCode, configure the repository's absolute path in `plugins`.
 V2 also discovers package directories under `~/.config/opencode/plugins/` and
 `.opencode/plugins/` automatically.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the source/test layout, commands, and
+dependency-review policy. CI uses frozen lockfiles, SHA-pinned actions, minimal
+permissions, dependency auditing, and CodeQL security analysis.
 
 ## Credits and license
 

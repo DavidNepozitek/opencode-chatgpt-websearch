@@ -1,19 +1,54 @@
 {
   "name": "opencode-chatgpt-websearch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Native OpenCode V2 web search using your existing ChatGPT subscription",
-  "type": "module",
-  "main": "index.js",
-  "exports": "./index.js",
-  "files": ["index.js", "search.js", "README.md", "LICENSE.md", "SECURITY.md"],
-  "scripts": { "test": "node --test search.test.mjs" },
-  "engines": { "node": ">=22" },
+  "keywords": [
+    "chatgpt",
+    "opencode",
+    "opencode-plugin",
+    "websearch"
+  ],
+  "homepage": "https://github.com/DavidNepozitek/opencode-chatgpt-websearch#readme",
+  "bugs": {
+    "url": "https://github.com/DavidNepozitek/opencode-chatgpt-websearch/issues"
+  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DavidNepozitek/opencode-chatgpt-websearch.git"
   },
-  "homepage": "https://github.com/DavidNepozitek/opencode-chatgpt-websearch#readme",
-  "bugs": { "url": "https://github.com/DavidNepozitek/opencode-chatgpt-websearch/issues" },
-  "keywords": ["opencode", "opencode-plugin", "chatgpt", "websearch"],
-  "license": "MIT"
+  "files": [
+    "server.ts",
+    "src",
+    "README.md",
+    "LICENSE.md",
+    "SECURITY.md"
+  ],
+  "type": "module",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./server": "./server.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint --deny-warnings server.ts src tests",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build",
+    "audit:dependencies": "pnpm audit --audit-level=moderate"
+  },
+  "devDependencies": {
+    "@opencode/plugin": "2.0.28",
+    "@types/node": "22.20.5",
+    "oxfmt": "0.72.0",
+    "oxlint": "1.87.0",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "packageManager": "pnpm@11.27.0"
 }
