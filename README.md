@@ -18,7 +18,7 @@ project's `opencode.jsonc`), preserving your other settings:
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugins": ["github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.0"],
+  "plugins": ["github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.1"],
   "websearch": { "provider": "chatgpt" },
 }
 ```
@@ -27,7 +27,7 @@ OpenCode installs GitHub packages automatically. Alternatively, install globally
 using the CLI, then choose **ChatGPT** in the normal search provider picker:
 
 ```sh
-opencode plugin add 'github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.0'
+opencode plugin add 'github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.1'
 ```
 
 Connect and select a ChatGPT subscription using **`/connect` → OpenAI** if you
@@ -38,7 +38,7 @@ Search official Zephyr documentation for the next RTOS LTS release and its plann
 ```
 
 The package is distributed through GitHub; it is not currently published to npm.
-The `v1.1.0` tag pins a release; use `#main` only if you want development updates.
+The `v1.1.1` tag pins a release; use `#main` only if you want development updates.
 If a newly installed plugin hasn't appeared, run `opencode service restart`.
 
 ## Configuration
@@ -52,7 +52,7 @@ supports:
 {
   "plugins": [
     {
-      "package": "github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.0",
+      "package": "github:DavidNepozitek/opencode-chatgpt-websearch#v1.1.1",
       "options": {
         "model": "gpt-5.6-luna",
         "timeout": 120000,

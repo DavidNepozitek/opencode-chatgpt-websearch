@@ -1,6 +1,6 @@
 {
   "name": "opencode-chatgpt-websearch",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Native OpenCode V2 web search using your existing ChatGPT subscription",
   "keywords": [
     "chatgpt",
@@ -31,13 +31,13 @@
     "./server": "./server.ts"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "compile": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --deny-warnings server.ts src tests",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm compile",
     "audit:dependencies": "pnpm audit --audit-level=moderate"
   },
   "devDependencies": {

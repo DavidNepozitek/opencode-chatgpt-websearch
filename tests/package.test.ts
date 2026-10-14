@@ -21,7 +21,8 @@ test("distribution has no runtime dependencies or installation lifecycle scripts
   assert.ok(
     "scripts" in manifest && manifest.scripts !== null && typeof manifest.scripts === "object",
   );
-  for (const script of ["preinstall", "install", "postinstall", "prepare", "prepack"]) {
+  // npm's Git fetcher also treats `build` as a preparation trigger.
+  for (const script of ["build", "preinstall", "install", "postinstall", "prepare", "prepack"]) {
     assert.equal(script in manifest.scripts, false);
   }
 });
